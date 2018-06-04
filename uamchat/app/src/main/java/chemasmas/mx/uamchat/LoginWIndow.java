@@ -1,5 +1,6 @@
 package chemasmas.mx.uamchat;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +31,9 @@ public class LoginWIndow extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 AccessToken at = loginResult.getAccessToken();
-                String user = at.getUserId();
-                String token = at.getToken();
+                //String user = at.getUserId();
+                //String token = at.getToken();
+
             }
 
             @Override
@@ -45,5 +47,11 @@ public class LoginWIndow extends AppCompatActivity {
                 Toast.makeText(LoginWIndow.this,"Error en el login",Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

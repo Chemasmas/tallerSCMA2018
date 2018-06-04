@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,9 +36,10 @@ public class Landing extends AppCompatActivity {
 
     @OnClick(R.id.fullscreen_content)
     public void gotoLogin(TextView tv){
-        Intent i = new Intent(Landing.this,LoginWIndow.class);
+        /*Intent i = new Intent(Landing.this,LoginWIndow.class);
         startActivity(i);
-        finish();
+        finish();*/
+        Toast.makeText(this, "Esto es Un Toast", Toast.LENGTH_LONG).show();
     }
 
 }
