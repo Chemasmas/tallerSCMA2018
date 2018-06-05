@@ -36,10 +36,10 @@ public class Landing extends AppCompatActivity {
 
     @OnClick(R.id.fullscreen_content)
     public void gotoLogin(TextView tv){
-        /*Intent i = new Intent(Landing.this,LoginWIndow.class);
+        Intent i = new Intent(Landing.this,LoginWIndow.class);
         startActivity(i);
-        finish();*/
-        Toast.makeText(this, "Esto es Un Toast", Toast.LENGTH_LONG).show();
+        finish();
+        //Toast.makeText(this, "Esto es Un Toast", Toast.LENGTH_LONG).show();
     }
 
 }
