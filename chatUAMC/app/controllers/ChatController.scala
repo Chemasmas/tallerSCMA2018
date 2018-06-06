@@ -2,7 +2,7 @@ package controllers
 
 import akka.actor.ActorSystem
 import javax.inject._
-import model.{Usuario, UsuarioOps}
+import model.{DummyGenerator, Usuario, UsuarioOps}
 import play.api.data.Forms._
 import play.api.data._
 import play.api.libs.Files
@@ -72,6 +72,47 @@ class ChatController @Inject()(cc: ControllerComponents, actorSystem: ActorSyste
           println(t)
           BadRequest("Fallo")
         }
+      }
+    }
+  }
+
+  def dummyGlobal():Action[AnyContent] = Action.async{
+    implicit request:Request[AnyContent] => {
+      Future {
+        val seq = (for{
+          x<-DummyGenerator.global()
+        } yield {
+          x
+        })
+        var i = 1
+        val json = JsArray( seq.map(
+            x=> JsObject(
+              Seq(
+                "remitente" -> JsNumber(x.remitente),
+                "destinatario" -> JsNumber(x.destinatario),
+                "mensaje" -> JsString(x.mensaje)
+              )
+            )
+          )
+        )
+        Ok(json)
+      }
+    }
+  }
+
+  def dummyUser(id:Int):Action[AnyContent] = Action.async {
+    implicit request: Request[AnyContent] => {
+      Future {
+        val x = DummyGenerator.fakeUsers().filter( x => x.id==id ).head
+        val z = JsObject(
+          Seq(
+            "id" -> JsNumber(x.id),
+            "user" -> JsString(x.user),
+            "imagen" -> JsString(x.imagen)
+          )
+        )
+
+        Ok("")
       }
     }
   }
