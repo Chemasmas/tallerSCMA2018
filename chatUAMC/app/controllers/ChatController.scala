@@ -112,7 +112,7 @@ class ChatController @Inject()(cc: ControllerComponents, actorSystem: ActorSyste
           )
         )
 
-        Ok("")
+        Ok(z)
       }
     }
   }
